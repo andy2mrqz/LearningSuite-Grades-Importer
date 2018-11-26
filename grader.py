@@ -139,7 +139,7 @@ def get_candidate(section):
         else:
             print("No students found by that name")
             print()
-            return
+            return None
     
 def grade(csvfile, section, assignments):
     """Enter students to grade and enter the grades for each assignment"""
@@ -148,14 +148,16 @@ def grade(csvfile, section, assignments):
         student = get_candidate(section)
         if student == "q":
             done = True
-        elif student == None:
+        elif student is None:
             continue
         else:
             name, net_id = student # Unpack values from the list
             grades = [] # Corresponds to the assignments list
             print(f"You chose {name}")
             print("Continue? (Y/n)")
-            if input("> ") == "n": print(); continue
+            if input("> ") == "n":
+                print()
+                continue
 
             print()
             print(f"You will be grading {', '.join(assignments)}")
